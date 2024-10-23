@@ -1,30 +1,30 @@
-// This is a basic Flutter widget test.
+// Bu, temel bir Flutter widget testi.
 //
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// Testinizde bir widget ile etkileşimde bulunmak için flutter_test paketindeki
+// WidgetTester aracını kullanın. Örneğin, dokunma ve kaydırma
+// hareketlerini gönderebilirsiniz. Ayrıca, WidgetTester ile
+// widget ağacındaki alt widget'ları bulabilir, metin okuyabilir
+// ve widget özelliklerinin değerlerini doğrulayabilirsiniz.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:intro_screen/main.dart';
+import 'package:intro_screen/main.dart'; // Test edilecek uygulamanın ana dosyası
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    // Uygulamayı oluştur ve bir çerçeve tetikle.
+    await tester.pumpWidget(const MyApp(introShown: false,)); // MyApp widget'ını başlangıç durumu ile başlat
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Sayacın başlangıçta 0 olduğunu doğrula.
+    expect(find.text('0'), findsOneWidget); // '0' metninin bir kere bulunmasını bekle
+    expect(find.text('1'), findsNothing); // '1' metninin hiç bulunmamasını bekle
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // '+' simgesine tıkla ve bir çerçeve tetikle.
+    await tester.tap(find.byIcon(Icons.add)); // '+' ikonuna tıklama
+    await tester.pump(); // Değişiklikleri güncelle
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Sayacın arttığını doğrula.
+    expect(find.text('0'), findsNothing); // '0' metninin artık bulunmamasını bekle
+    expect(find.text('1'), findsOneWidget); // '1' metninin bir kere bulunmasını bekle
   });
 }
